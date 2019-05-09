@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>魔方</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            *{
+                margin:0;
+                padding: 0;
+            }
+            .container{
+                width: 300px;
+                height: 300px;
+                margin:150px auto;
+                perspective: 20000px;
+            }
+            .box{
+                width: 300px;
+                height: 300px;
+                /*transform: rotateX(45deg) rotateY(45deg);*/
+                transform-style: preserve-3d;
+                animation: ro 4s linear infinite;
+            }
+            @keyframes ro{
+                0%{
+                    transform:rotateX(0deg) rotateY(0deg);
+                } 
+                100%{
+                    transform:rotateX(360deg) rotateY(360deg);
+                }
+            }
+            .box-page{
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                transform-style: preserve-3d;
+
+                
+            }
+            .top{
+
+                transform: translateZ(150px);
+                transform-style: preserve-3d;
+            }
+            .bottom{
+
+                transform: translateZ(-150px);
+            }
+            .left{
+
+                transform: translateX(-150px) rotateY(90deg);
+            }
+            .right{
+
+                transform: translateX(150px) rotateY(90deg);
+            }
+            .before{
+
+                transform: translateY(150px) rotateX(90deg);
+            }
+            .after{
+
+                transform: translateY(-150px) rotateX(90deg);
+            }
+            .box-page div:nth-child(1){
+                animation: a1 5s ease-in infinite;
+            }
+            .box-page div:nth-child(2){
+                animation: a1 5s ease-in 0.3s infinite;
+            }
+            .box-page div:nth-child(3){
+                animation: a1 5s ease-in 0.6s infinite;
+            }
+            .box-page div:nth-child(4){
+                animation: a1 5s ease-in 0.9s infinite;
+            }
+            .box-page div:nth-child(5){
+                animation: a1 5s ease-in 1.2s infinite;
+            }
+            .box-page div:nth-child(6){
+                animation: a1 5s ease-in 1.5s infinite;
+            }
+            .box-page div:nth-child(7){
+                animation: a1 5s ease-in 1.8s infinite;
+            }
+            .box-page div:nth-child(8){
+                animation: a1 5s ease-in 2.1s infinite;
+            }
+            .box-page div:nth-child(9){
+                animation: a1 5s ease-in 2.4s infinite;
+            }
+            @keyframes a1{
+                /*0%{
+                    transfrom:translateZ(0px) scale(1) rotateZ(0deg);
+                }
+                20%{
+                    transfrom:translateZ(300px) scale(0) rotateZ(720deg);
+                }
+                90%{
+                    transfrom:translateZ(300px) scale(0) rotateZ(720deg);
+                }
+                100%{
+                    transfrom:translateZ(0px) scale(1) rotateZ(0deg);
+                }*/
+                0%{
+                    transform:translateZ(0px) scale(1) rotateZ(0deg);
+                }
+                16%{
+                    transform:translate(300px) scale(0) rotateZ(720deg);
+                }
+                32%{
+                    transform:translate(300px) scale(0) rotateZ(720deg);
+                }
+                48%{
+                    transform:translate(0px) scale(1) rotate(0deg);
+                }
+                100%{
+                    transform:translate(0px) scale(1) rotate(0deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                <div class="box-page top"></div>
+                <div class="box-page bottom"></div>
+                <div class="box-page left"></div>
+                <div class="box-page right"></div>
+                <div class="box-page before"></div>
+                <div class="box-page after"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var arr = document.querySelectorAll(".box-page");
+            for (var n = 0; n < arr.length; n++) {
+                for (var r = 0; r < 3; r++) {
+                    for (var c = 0; c < 3; c++) {
+                        var divs = document.createElement("div");
+                        divs.style.cssText = "width:100px;height:100px;border:2px solid #fff;box-sizing:border-box;position:absolute;\n\
+                            background-image:url(image/a" + n + ".jpg);background-size:300px 300px;";
+
+                        arr[n].appendChild(divs);
+                        divs.style.left = c * 100 + "px";
+                        divs.style.top = r * 100 + "px";
+                        divs.style.backgroundPositionX = -c * 100 + "px";
+                        divs.style.backgroundPositionY = -r * 100 + "px";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
